@@ -1,0 +1,64 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateFighterInput {
+  birthDate: String
+  country: String
+  firstName: String!
+  heightCm: Int
+  isRetired: Boolean! = false
+  lastName: String!
+  nickname: String
+  reachCm: Int
+  weightClass: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Fighter {
+  birthDate: String
+  country: String
+  createdAt: DateTime!
+  draws: Int!
+  firstName: String!
+  heightCm: Int
+  id: ID!
+  isRetired: Boolean!
+  knockouts: Int!
+  lastName: String!
+  losses: Int!
+  nickname: String
+  reachCm: Int
+  submissions: Int!
+  updatedAt: DateTime!
+  weightClass: String!
+  wins: Int!
+}
+
+type Mutation {
+  createFighter(createFighterInput: CreateFighterInput!): Fighter!
+  removeFighter(id: ID!): Fighter!
+  updateFighter(updateFighterInput: UpdateFighterInput!): Fighter!
+}
+
+type Query {
+  fighter(id: ID!): Fighter!
+  fighters: [Fighter!]!
+}
+
+input UpdateFighterInput {
+  birthDate: String
+  country: String
+  firstName: String
+  heightCm: Int
+  id: ID!
+  isRetired: Boolean = false
+  lastName: String
+  nickname: String
+  reachCm: Int
+  weightClass: String
+}
