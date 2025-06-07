@@ -9,6 +9,15 @@ input CreateEventInput {
   name: String!
 }
 
+input CreateFightInput {
+  eventId: ID!
+  fighter1Id: ID!
+  fighter2Id: ID!
+  result: FightResult
+  roundEnded: Int
+  winnerId: ID
+}
+
 input CreateFighterInput {
   birthDate: String
   country: String
@@ -45,7 +54,6 @@ type Fight {
   id: ID!
   result: FightResult
   roundEnded: Int
-  timeInRound: String
   updatedAt: DateTime!
   winner: Fighter
 }
@@ -81,18 +89,23 @@ type Fighter {
 
 type Mutation {
   createEvent(createEventInput: CreateEventInput!): Event!
+  createFight(createFightInput: CreateFightInput!): Fight!
   createFighter(createFighterInput: CreateFighterInput!): Fighter!
   removeEvent(id: ID!): Event!
+  removeFight(id: ID!): Fight!
   removeFighter(id: ID!): Fighter!
   updateEvent(updateEventInput: UpdateEventInput!): Event!
+  updateFight(updateFightInput: UpdateFightInput!): Fight!
   updateFighter(updateFighterInput: UpdateFighterInput!): Fighter!
 }
 
 type Query {
   event(id: ID!): Event!
   events: [Event!]!
+  fight(id: ID!): Fight!
   fighter(id: ID!): Fighter!
   fighters: [Fighter!]!
+  fights: [Fight!]!
   upcomingEvents: [Event!]!
 }
 
@@ -102,6 +115,16 @@ input UpdateEventInput {
   isFinished: Boolean = false
   location: String
   name: String
+}
+
+input UpdateFightInput {
+  eventId: ID
+  fighter1Id: ID
+  fighter2Id: ID
+  id: ID!
+  result: FightResult
+  roundEnded: Int
+  winnerId: ID
 }
 
 input UpdateFighterInput {

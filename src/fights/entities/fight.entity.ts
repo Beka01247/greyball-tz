@@ -75,10 +75,6 @@ export class Fight {
   @Field(() => Int, { nullable: true })
   roundEnded: number;
 
-  @Column({ type: 'interval', nullable: true })
-  @Field({ nullable: true })
-  timeInRound: string;
-
   @CreateDateColumn()
   @Field()
   createdAt: Date;
