@@ -7,16 +7,33 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
+import { ObjectType, Field, ID, Int, registerEnumType } from '@nestjs/graphql';
 import { Fighter } from '../../fighters/entities/fighter.entity';
 import { Event } from '../../events/entities/event.entity';
 
+export enum FightResult {
+  DECISION = 'DECISION',
+  KO = 'KO',
+  TKO = 'TKO',
+  SUBMISSION = 'SUBMISSION',
+  DQ = 'DQ',
+  NO_CONTEST = 'NO_CONTEST',
+}
+
+registerEnumType(FightResult, {
+  name: 'FightResult',
+});
+
 @Entity('fights')
+@ObjectType()
 export class Fight {
   @PrimaryGeneratedColumn('uuid')
+  @Field(() => ID)
   id: string;
 
   @ManyToOne(() => Event, (event) => event.fights)
   @JoinColumn({ name: 'eventId' })
+  @Field(() => Event)
   event: Event;
 
   @Column()
@@ -24,6 +41,7 @@ export class Fight {
 
   @ManyToOne(() => Fighter)
   @JoinColumn({ name: 'fighter1Id' })
+  @Field(() => Fighter)
   fighter1: Fighter;
 
   @Column()
@@ -31,6 +49,7 @@ export class Fight {
 
   @ManyToOne(() => Fighter)
   @JoinColumn({ name: 'fighter2Id' })
+  @Field(() => Fighter)
   fighter2: Fighter;
 
   @Column()
@@ -41,24 +60,30 @@ export class Fight {
 
   @ManyToOne(() => Fighter, { nullable: true })
   @JoinColumn({ name: 'winnerId' })
+  @Field(() => Fighter, { nullable: true })
   winner: Fighter;
 
   @Column({
     type: 'enum',
-    enum: ['DECISION', 'KO', 'TKO', 'SUBMISSION', 'DQ', 'NO_CONTEST'],
+    enum: FightResult,
     nullable: true,
   })
-  result: string;
+  @Field(() => FightResult, { nullable: true })
+  result: FightResult;
 
   @Column({ type: 'int', nullable: true })
+  @Field(() => Int, { nullable: true })
   roundEnded: number;
 
   @Column({ type: 'interval', nullable: true })
+  @Field({ nullable: true })
   timeInRound: string;
 
   @CreateDateColumn()
+  @Field()
   createdAt: Date;
 
   @UpdateDateColumn()
+  @Field()
   updatedAt: Date;
 }
