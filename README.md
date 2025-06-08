@@ -361,7 +361,7 @@ This example demonstrates how:
 
 ## Database Schema
 
-![Database ERD](./docs/erd.png)
+![Database ERD](./docs/ERD.png)
 
 ## GraphQL API Features
 
