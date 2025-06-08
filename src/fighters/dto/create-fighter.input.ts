@@ -26,6 +26,18 @@ export class CreateFighterInput {
   @Field()
   weightClass: string;
 
+  @Field(() => Int, { defaultValue: 0 })
+  wins: number;
+
+  @Field(() => Int, { defaultValue: 0 })
+  losses: number;
+
+  @Field(() => Int, { defaultValue: 0 })
+  knockouts: number;
+
+  @Field(() => Int, { defaultValue: 0 })
+  submissions: number;
+
   @Field({ defaultValue: false })
   isRetired: boolean;
 }

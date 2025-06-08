@@ -24,9 +24,20 @@ input CreateFighterInput {
   firstName: String!
   heightCm: Int
   isRetired: Boolean! = false
+  knockouts: Int! = 0
   lastName: String!
+  losses: Int! = 0
   nickname: String
   reachCm: Int
+  submissions: Int! = 0
+  weightClass: String!
+  wins: Int! = 0
+}
+
+input CreateRankingInput {
+  fighterId: ID!
+  points: Float!
+  position: Int!
   weightClass: String!
 }
 
@@ -91,12 +102,15 @@ type Mutation {
   createEvent(createEventInput: CreateEventInput!): Event!
   createFight(createFightInput: CreateFightInput!): Fight!
   createFighter(createFighterInput: CreateFighterInput!): Fighter!
+  createRanking(createRankingInput: CreateRankingInput!): Ranking!
   removeEvent(id: ID!): Event!
   removeFight(id: ID!): Fight!
   removeFighter(id: ID!): Fighter!
+  removeRanking(id: ID!): Ranking!
   updateEvent(updateEventInput: UpdateEventInput!): Event!
   updateFight(updateFightInput: UpdateFightInput!): Fight!
   updateFighter(updateFighterInput: UpdateFighterInput!): Fighter!
+  updateRanking(updateRankingInput: UpdateRankingInput!): Ranking!
 }
 
 type Query {
@@ -106,7 +120,21 @@ type Query {
   fighter(id: ID!): Fighter!
   fighters: [Fighter!]!
   fights: [Fight!]!
+  ranking(id: ID!): Ranking!
+  rankings: [Ranking!]!
+  rankingsByWeightClass(weightClass: String!): [Ranking!]!
   upcomingEvents: [Event!]!
+}
+
+type Ranking {
+  createdAt: DateTime!
+  fighter: Fighter!
+  fighterId: ID!
+  id: ID!
+  points: Float!
+  position: Int!
+  updatedAt: DateTime!
+  weightClass: String!
 }
 
 input UpdateEventInput {
@@ -134,8 +162,20 @@ input UpdateFighterInput {
   heightCm: Int
   id: ID!
   isRetired: Boolean = false
+  knockouts: Int = 0
   lastName: String
+  losses: Int = 0
   nickname: String
   reachCm: Int
+  submissions: Int = 0
+  weightClass: String
+  wins: Int = 0
+}
+
+input UpdateRankingInput {
+  fighterId: ID
+  id: ID!
+  points: Float
+  position: Int
   weightClass: String
 }
