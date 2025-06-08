@@ -26,7 +26,6 @@ import { RankingsModule } from './rankings/rankings.module';
         database: configService.get('DB_NAME'),
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
         synchronize: configService.get('NODE_ENV') === 'development',
-        logging: configService.get('NODE_ENV') === 'development',
       }),
       inject: [ConfigService],
     }),
