@@ -1,0 +1,33 @@
+query GetAllRankings {
+  rankings {
+    id
+    fighter {
+      firstName
+      lastName
+    }
+    weightClass
+    position
+    points
+  }
+}
+
+query GetRankingsByWeightClass($weightClass: String!) {
+  rankingsByWeightClass(weightClass: $weightClass) {
+    id
+    fighter {
+      firstName
+      lastName
+      wins
+      losses
+      knockouts
+      submissions
+    }
+    position
+    points
+  }
+}
+
+# Variables:
+# {
+#   "weightClass": "Lightweight"
+# }

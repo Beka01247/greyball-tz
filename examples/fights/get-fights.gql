@@ -1,0 +1,52 @@
+query GetAllFights {
+  fights {
+    id
+    event {
+      name
+      date
+    }
+    fighter1 {
+      firstName
+      lastName
+    }
+    fighter2 {
+      firstName
+      lastName
+    }
+    winner {
+      firstName
+      lastName
+    }
+    result
+    roundEnded
+  }
+}
+
+query GetFightById($id: ID!) {
+  fight(id: $id) {
+    id
+    event {
+      name
+      date
+    }
+    fighter1 {
+      firstName
+      lastName
+    }
+    fighter2 {
+      firstName
+      lastName
+    }
+    winner {
+      firstName
+      lastName
+    }
+    result
+    roundEnded
+  }
+}
+
+# Variables:
+# {
+#   "id": "fight-uuid"
+# }

@@ -1,0 +1,47 @@
+mutation CreateFight($input: CreateFightInput!) {
+  createFight(createFightInput: $input) {
+    id
+    event {
+      name
+    }
+    fighter1 {
+      firstName
+      lastName
+    }
+    fighter2 {
+      firstName
+      lastName
+    }
+  }
+}
+
+mutation UpdateFightResult($input: UpdateFightInput!) {
+  updateFight(updateFightInput: $input) {
+    id
+    winner {
+      firstName
+      lastName
+    }
+    result
+    roundEnded
+  }
+}
+
+# Variables for CreateFight:
+# {
+#   "input": {
+#     "eventId": "event-uuid",
+#     "fighter1Id": "fighter1-uuid",
+#     "fighter2Id": "fighter2-uuid"
+#   }
+# }
+
+# Variables for UpdateFightResult:
+# {
+#   "input": {
+#     "id": "fight-uuid",
+#     "winnerId": "winner-fighter-uuid",
+#     "result": "KO",
+#     "roundEnded": 2
+#   }
+# }

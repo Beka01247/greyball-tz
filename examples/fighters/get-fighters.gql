@@ -1,0 +1,34 @@
+query GetAllFighters {
+  fighters {
+    id
+    firstName
+    lastName
+    nickname
+    weightClass
+    wins
+    losses
+    draws
+    knockouts
+    submissions
+  }
+}
+
+query GetFighterById($id: ID!) {
+  fighter(id: $id) {
+    id
+    firstName
+    lastName
+    nickname
+    weightClass
+    wins
+    losses
+    draws
+    knockouts
+    submissions
+  }
+}
+
+# Variables:
+# {
+#   "id": "fighter-uuid"
+# }

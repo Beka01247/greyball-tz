@@ -1,0 +1,25 @@
+mutation CreateFighter($input: CreateFighterInput!) {
+  createFighter(createFighterInput: $input) {
+    id
+    firstName
+    lastName
+    nickname
+    weightClass
+    wins
+    losses
+    draws
+  }
+}
+
+# Variables:
+# {
+#   "input": {
+#     "firstName": "Test",
+#     "lastName": "Test",
+#     "nickname": "Test",
+#     "weightClass": "Lightweight",
+#     "country": "Kazakhstan",
+#     "heightCm": 180,
+#     "reachCm": 188
+#   }
+# }

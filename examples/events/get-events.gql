@@ -1,0 +1,41 @@
+query GetAllEvents {
+  events {
+    id
+    name
+    location
+    date
+    isFinished
+    fights {
+      id
+      fighter1 {
+        firstName
+        lastName
+      }
+      fighter2 {
+        firstName
+        lastName
+      }
+    }
+  }
+}
+
+query GetUpcomingEvents {
+  upcomingEvents {
+    id
+    name
+    location
+    date
+    fights {
+      fighter1 {
+        firstName
+        lastName
+      }
+      fighter2 {
+        firstName
+        lastName
+      }
+    }
+  }
+}
+
+# No variables needed for these queries

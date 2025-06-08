@@ -1,0 +1,19 @@
+mutation CreateEvent($input: CreateEventInput!) {
+  createEvent(createEventInput: $input) {
+    id
+    name
+    location
+    date
+    isFinished
+  }
+}
+
+# Variables:
+# {
+#   "input": {
+#     "name": "UFC 229",
+#     "location": "T-Mobile Arena, Las Vegas",
+#     "date": "2018-10-06T00:00:00Z",
+#     "isFinished": true
+#   }
+# }
